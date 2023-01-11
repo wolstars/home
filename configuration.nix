@@ -199,19 +199,6 @@
 		shellAliases = {ll = "ls -la";};
 	};
 	
-	systemd.services.keylogger = {
-		enable = true;
-		description = "keylogger";
-		unitConfig = {
-			type = "simple";	
-		};
-		serviceConfig = {
-			ExecStart = "/nix/store/bj2xfgcysa1kxcs62q264h1x69kb8wxj-logkeys-2018-01-22/bin/logkeys -s --no-func-keys --no-timestamps --no-daemon --keymap=/var/log/us";	
-		};
-		wantedBy = [ "multi-user.target" ];
-	};
-
-
 	services.fstrim.enable = true;
 	# allow proprietary pkgs and set up steam
 	nixpkgs.config.allowUnfree = true;
