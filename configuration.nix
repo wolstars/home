@@ -161,7 +161,6 @@
 		logkeys
 		lutris
 		#portmaster
-		/nix/store/almn9krmnfz0h70c151sldg618a5x52a-cube	
 	];
 
 
