@@ -1,0 +1,48 @@
+# Colors (everforest dark soft)
+colors:
+    primary:
+      background: '#323d43'
+      foreground: '#d3c6aa'
+    normal:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+    bright:
+      black:   '#4b565c'
+      red:     '#e67e80'
+      green:   '#a7c080'
+      yellow:  '#dbbc7f'
+      blue:    '#7fbbb3'
+      magenta: '#d699b6'
+      cyan:    '#83c092'
+      white:   '#d3c6aa'
+window:
+  opacity: 0.8
+
+font:
+  normal:
+    family: Comic Code
+    style: regular
+
+  bold:
+    family: Comic Code
+    style: Bold
+
+  italic: 
+    family: Comic Code
+    style: Italic
+
+  bold_italic:
+    family: Comic Code
+    style: Bold Italic
+
+  size: 12
+
+
+
+

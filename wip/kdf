@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+PASSWORDS=/home/boas/wip/passwords
+
+
+lscheck () {
+	[ "$(ls -A $PASSWORDS)" ] && return 0
+	return 1
+}
+
+
+[ -z "$1" ] && if lscheck ; then
+	TARGET=$(ls $PASSWORDS | dmenu)
+	[ -z "$TARGET" ] && echo "dmenu returns NULL, quitting" && exit 1
+	echo "password:"
+	IFS= read -rs password
+	(/home/boas/wip/hash.py "$(cat $PASSWORDS/$TARGET)" "$password")| xclip -selection c && echo "done" && exit 0
+else echo "no passwords stored" && exit 1
+fi
+
+if [ ! -z "$1" ]; then
+	[ "$1" = add ] && if [ ! -z "$2" ]; then
+		[ -e $PASSWORDS/"$2" ] && echo "$2 already exists" && exit 1 || ($((od -vAn -N8 -tu8 < /dev/random) > $PASSWORDS/"$2") && echo "$2 is saved")
+
+	fi
+
+	[ "$1" = rm ] && (lscheck || (echo " no passwords stored" && exit 1)) && ([ ! -z "$2" ] || (echo "missing argument" && exit 1)) && if [ -e $PASSWORDS/"$2" ]; then
+		echo "enter $2 to delete"
+		read
+		([ "$REPLY" = "$2" ] && rm $PASSWORDS/"$2" && echo "$2 deleted") || echo "does not match" && exit 1
+
+	else echo "file does not exist" && exit 1
+	fi
+
+	[ "$1" = ls ] && (lscheck || (echo " no passwords stored" && exit 1)) && echo "$(ls $PASSWORDS)"
+
+fi
+
+exit 0
